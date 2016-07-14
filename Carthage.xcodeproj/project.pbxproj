@@ -25,6 +25,8 @@
 		89E80E641C755059000F8DCB /* BuildArgumentsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E80E631C755059000F8DCB /* BuildArgumentsSpec.swift */; };
 		98400F5E1BD24DFA008C5DDE /* carthage-bash-completion in Copy Scripts */ = {isa = PBXBuildFile; fileRef = 98400F5A1BD24DC5008C5DDE /* carthage-bash-completion */; };
 		98400F5F1BD24DFA008C5DDE /* carthage-zsh-completion in Copy Scripts */ = {isa = PBXBuildFile; fileRef = 98400F5B1BD24DC5008C5DDE /* carthage-zsh-completion */; };
+		A15C6BFC1D3856BE008F3C68 /* RomeKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A15C6BF81D385648008F3C68 /* RomeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A15C6BFD1D3856D0008F3C68 /* RomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15C6BF81D385648008F3C68 /* RomeKit.framework */; };
 		BEA86F9F1C9F914A0049360B /* Curry.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BEB076641C8A1FD800ABD373 /* Curry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BEA86FA01C9F91500049360B /* Tentacle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BEB076651C8A1FD800ABD373 /* Tentacle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BEB076661C8A1FD800ABD373 /* Curry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEB076641C8A1FD800ABD373 /* Curry.framework */; };
@@ -130,6 +132,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				A15C6BFC1D3856BE008F3C68 /* RomeKit.framework in Copy Frameworks */,
 				BEA86FA01C9F91500049360B /* Tentacle.framework in Copy Frameworks */,
 				BEA86F9F1C9F914A0049360B /* Curry.framework in Copy Frameworks */,
 				D01F8A4519EA28E600643E7C /* ReactiveCocoa.framework in Copy Frameworks */,
@@ -175,6 +178,7 @@
 		89E80E631C755059000F8DCB /* BuildArgumentsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildArgumentsSpec.swift; sourceTree = "<group>"; };
 		98400F5A1BD24DC5008C5DDE /* carthage-bash-completion */ = {isa = PBXFileReference; lastKnownFileType = text; path = "carthage-bash-completion"; sourceTree = "<group>"; };
 		98400F5B1BD24DC5008C5DDE /* carthage-zsh-completion */ = {isa = PBXFileReference; lastKnownFileType = text; path = "carthage-zsh-completion"; sourceTree = "<group>"; };
+		A15C6BF81D385648008F3C68 /* RomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RomeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB076641C8A1FD800ABD373 /* Curry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Curry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB076651C8A1FD800ABD373 /* Tentacle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Tentacle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD7F22431C67649F00B018A9 /* TestCartfileProposedVersion */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestCartfileProposedVersion; sourceTree = "<group>"; };
@@ -251,6 +255,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A15C6BFD1D3856D0008F3C68 /* RomeKit.framework in Frameworks */,
 				BEB076661C8A1FD800ABD373 /* Curry.framework in Frameworks */,
 				BEB076671C8A1FD800ABD373 /* Tentacle.framework in Frameworks */,
 				D0E0E1B01A2D28AC0097BE2B /* ReactiveTask.framework in Frameworks */,
@@ -452,6 +457,7 @@
 		D0D1216F19E87B05005E4BAA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A15C6BF81D385648008F3C68 /* RomeKit.framework */,
 				D012AD0F1AF9843700EE91DA /* Result.framework */,
 				D0F648811A4DD3D900BCF808 /* Argo.framework */,
 				BEB076641C8A1FD800ABD373 /* Curry.framework */,
@@ -798,7 +804,7 @@
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
@@ -808,7 +814,7 @@
 			baseConfigurationReference = D0D1212819E878CC005E4BAA /* Release.xcconfig */;
 			buildSettings = {
 				GCC_NO_COMMON_BLOCKS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 			};
 			name = Release;
 		};
@@ -820,6 +826,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Checkouts/RomeKit/build/Debug",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/CarthageKit/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.carthage.$(PRODUCT_NAME:rfc1034identifier)";
@@ -837,6 +848,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Checkouts/RomeKit/build/Debug",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/CarthageKit/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.carthage.$(PRODUCT_NAME:rfc1034identifier)";
@@ -879,7 +895,7 @@
 			baseConfigurationReference = D0D1212719E878CC005E4BAA /* Profile.xcconfig */;
 			buildSettings = {
 				GCC_NO_COMMON_BLOCKS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 			};
 			name = Profile;
 		};
@@ -891,6 +907,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Checkouts/RomeKit/build/Debug",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/CarthageKit/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.carthage.$(PRODUCT_NAME:rfc1034identifier)";
@@ -919,7 +940,7 @@
 			baseConfigurationReference = D0D1212919E878CC005E4BAA /* Test.xcconfig */;
 			buildSettings = {
 				GCC_NO_COMMON_BLOCKS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 			};
 			name = Test;
 		};
@@ -931,6 +952,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Checkouts/RomeKit/build/Debug",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/CarthageKit/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.carthage.$(PRODUCT_NAME:rfc1034identifier)";
@@ -958,6 +984,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Source/carthage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/. @executable_path/CarthageKit.framework/Versions/Current/Frameworks /Library/Frameworks /Library/Frameworks/CarthageKit.framework/Versions/Current/Frameworks $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.carthage.$(PRODUCT_NAME:rfc1034identifier)";
@@ -969,6 +999,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Source/carthage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/. @executable_path/CarthageKit.framework/Versions/Current/Frameworks /Library/Frameworks /Library/Frameworks/CarthageKit.framework/Versions/Current/Frameworks $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.carthage.$(PRODUCT_NAME:rfc1034identifier)";
@@ -980,6 +1014,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Source/carthage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/. @executable_path/CarthageKit.framework/Versions/Current/Frameworks /Library/Frameworks /Library/Frameworks/CarthageKit.framework/Versions/Current/Frameworks $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.carthage.$(PRODUCT_NAME:rfc1034identifier)";
@@ -991,6 +1029,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Source/carthage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/. @executable_path/CarthageKit.framework/Versions/Current/Frameworks /Library/Frameworks /Library/Frameworks/CarthageKit.framework/Versions/Current/Frameworks $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.carthage.$(PRODUCT_NAME:rfc1034identifier)";

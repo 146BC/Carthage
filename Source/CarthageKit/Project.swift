@@ -10,6 +10,7 @@ import Foundation
 import Result
 import ReactiveCocoa
 import Tentacle
+import RomeKit
 
 /// Carthage’s bundle identifier.
 public let CarthageKitBundleIdentifier = NSBundle(forClass: Project.self).bundleIdentifier!
@@ -462,12 +463,14 @@ public final class Project {
 			}
 	}
 
+
+	
 	/// Downloads any binaries and debug symbols that may be able to be used 
 	/// instead of a repository checkout.
 	///
 	/// Sends the URL to each downloaded zip, after it has been moved to a
 	/// less temporary location.
-	private func downloadMatchingBinariesForProject(project: ProjectIdentifier, atRevision revision: String, fromRepository repository: Repository, client: Client) -> SignalProducer<NSURL, CarthageError> {
+	private func downloadMatchingBinariesForProject(project: ProjectIdentifier, atRevision revision: String, fromRepository repository: Repository, client: Tentacle.Client) -> SignalProducer<NSURL, CarthageError> {
 		return client.releaseForTag(revision, inRepository: repository)
 			.map { _, release in release }
 			.filter { release in

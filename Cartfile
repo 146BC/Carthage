@@ -3,3 +3,4 @@ github "Carthage/Commandant" ~> 0.10.0
 github "jdhealy/PrettyColors" ~> 3.0.2
 github "ReactiveCocoa/ReactiveCocoa" ~> 4.2.1
 github "mdiep/Tentacle" ~> 0.3
+github "146BC/RomeKit" ~> 0.1.3
