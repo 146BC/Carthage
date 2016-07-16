@@ -423,98 +423,45 @@ public final class Project {
 
 				let checkoutDirectoryURL = self.directoryURL.URLByAppendingPathComponent(project.relativePath, isDirectory: true)
 
-				switch project {
-				case let .GitHub(repository):
-					let client = Client(repository: repository)
-					return self.downloadMatchingBinariesForProject(project, atRevision: revision, fromRepository: repository, client: client)
-						.flatMapError { error -> SignalProducer<NSURL, CarthageError> in
-							if !client.authenticated {
-								return SignalProducer(error: error)
+				return self.downloadMatchingBinariesForProject(project, revision: revision)
+					.flatMap(.Concat, transform: unzipArchiveToTemporaryDirectory)
+					.flatMap(.Concat) { directoryURL in
+						return frameworksInDirectory(directoryURL)
+							.flatMap(.Merge, transform: self.copyFrameworkToBuildFolder)
+							.flatMap(.Merge) { frameworkURL in
+								return self.copyDSYMToBuildFolderForFramework(frameworkURL, fromDirectoryURL: directoryURL)
+									.then(self.copyBCSymbolMapsToBuildFolderForFramework(frameworkURL, fromDirectoryURL: directoryURL))
 							}
-							return self.downloadMatchingBinariesForProject(project, atRevision: revision, fromRepository: repository, client: Client(repository: repository, authenticated: false))
+							.on(completed: {
+								_ = try? NSFileManager.defaultManager().trashItemAtURL(checkoutDirectoryURL, resultingItemURL: nil)
+							})
+							.then(SignalProducer(value: directoryURL))
+					}
+					.attemptMap { (temporaryDirectoryURL: NSURL) -> Result<Bool, CarthageError> in
+						do {
+							try NSFileManager.defaultManager().removeItemAtURL(temporaryDirectoryURL)
+							return .Success(true)
+						} catch let error as NSError {
+							return .Failure(.WriteFailed(temporaryDirectoryURL, error))
 						}
-						.flatMap(.Concat, transform: unzipArchiveToTemporaryDirectory)
-						.flatMap(.Concat) { directoryURL in
-							return frameworksInDirectory(directoryURL)
-								.flatMap(.Merge, transform: self.copyFrameworkToBuildFolder)
-								.flatMap(.Merge) { frameworkURL in
-									return self.copyDSYMToBuildFolderForFramework(frameworkURL, fromDirectoryURL: directoryURL)
-										.then(self.copyBCSymbolMapsToBuildFolderForFramework(frameworkURL, fromDirectoryURL: directoryURL))
-								}
-								.on(completed: {
-									_ = try? NSFileManager.defaultManager().trashItemAtURL(checkoutDirectoryURL, resultingItemURL: nil)
-								})
-								.then(SignalProducer(value: directoryURL))
-						}
-						.attemptMap { (temporaryDirectoryURL: NSURL) -> Result<Bool, CarthageError> in
-							do {
-								try NSFileManager.defaultManager().removeItemAtURL(temporaryDirectoryURL)
-								return .Success(true)
-							} catch let error as NSError {
-								return .Failure(.WriteFailed(temporaryDirectoryURL, error))
-							}
-						}
-						.concat(SignalProducer(value: false))
-						.take(1)
-
-				case .Git:
-					return SignalProducer(value: false)
-				}
-			}
+					}
+					.concat(SignalProducer(value: false))
+					.take(1)
+		}
 	}
 
-
+	private func downloadMatchingBinariesForProject(project: ProjectIdentifier, revision: String) -> SignalProducer<NSURL, CarthageError> {
+		
+		guard let asset = Rome().getLatestByRevison(project.name, revision: revision) else {
+			return SignalProducer<NSURL, CarthageError>.empty
+		}
 	
-	/// Downloads any binaries and debug symbols that may be able to be used 
-	/// instead of a repository checkout.
-	///
-	/// Sends the URL to each downloaded zip, after it has been moved to a
-	/// less temporary location.
-	private func downloadMatchingBinariesForProject(project: ProjectIdentifier, atRevision revision: String, fromRepository repository: Repository, client: Tentacle.Client) -> SignalProducer<NSURL, CarthageError> {
-		return client.releaseForTag(revision, inRepository: repository)
-			.map { _, release in release }
-			.filter { release in
-				return !release.draft && !release.assets.isEmpty
-			}
-			.flatMapError { error -> SignalProducer<Release, CarthageError> in
-				switch error {
-				case .DoesNotExist:
-					return .empty
-					
-				case let .APIError(_, _, error):
-					// Log the GitHub API request failure, not to error out,
-					// because that should not be fatal error.
-					self._projectEventsObserver.sendNext(.SkippedDownloadingBinaries(project, error.message))
-					return .empty
-
-				default:
-					return SignalProducer(error: .GitHubAPIRequestFailed(error))
-				}
-			}
-			.on(next: { release in
-				self._projectEventsObserver.sendNext(.DownloadingBinaries(project, release.nameWithFallback))
-			})
-			.flatMap(.Concat) { release -> SignalProducer<NSURL, CarthageError> in
-				return SignalProducer<Release.Asset, CarthageError>(values: release.assets)
-					.filter { asset in
-						let name = asset.name as NSString
-						if name.rangeOfString(CarthageProjectBinaryAssetPattern).location == NSNotFound {
-							return false
-						}
-						return CarthageProjectBinaryAssetContentTypes.contains(asset.contentType)
-					}
-					.flatMap(.Concat) { asset -> SignalProducer<NSURL, CarthageError> in
-						let fileURL = fileURLToCachedBinary(project, release, asset)
-
-						if NSFileManager.defaultManager().fileExistsAtPath(fileURL.path!) {
-							return SignalProducer(value: fileURL)
-						} else {
-							return client.downloadAsset(asset)
-								.mapError(CarthageError.GitHubAPIRequestFailed)
-								.flatMap(.Concat) { downloadURL in cacheDownloadedBinary(downloadURL, toURL: fileURL) }
-						}
-					}
-			}
+		guard let tempAssetLocation = Rome().downloadAsset(asset) else {
+			return SignalProducer<NSURL, CarthageError>.empty
+		}
+		
+		return SignalProducer(value: tempAssetLocation)
+		
 	}
 
 	/// Copies the framework at the given URL into the current project's build

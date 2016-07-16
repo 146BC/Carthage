@@ -27,6 +27,11 @@
 		98400F5F1BD24DFA008C5DDE /* carthage-zsh-completion in Copy Scripts */ = {isa = PBXBuildFile; fileRef = 98400F5B1BD24DC5008C5DDE /* carthage-zsh-completion */; };
 		A15C6BFC1D3856BE008F3C68 /* RomeKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A15C6BF81D385648008F3C68 /* RomeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A15C6BFD1D3856D0008F3C68 /* RomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15C6BF81D385648008F3C68 /* RomeKit.framework */; };
+		A1678AF31D3A37A7006E052E /* Rome.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1678AF21D3A37A7006E052E /* Rome.swift */; };
+		A1678AFA1D3A6B8A006E052E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1678AF81D3A6B8A006E052E /* Alamofire.framework */; };
+		A1678AFC1D3A6BC0006E052E /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A1678AF81D3A6B8A006E052E /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A1678AFF1D3A6BF6006E052E /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1678AFE1D3A6BF6006E052E /* ObjectMapper.framework */; };
+		A1678B001D3A6C0E006E052E /* ObjectMapper.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A1678AFE1D3A6BF6006E052E /* ObjectMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BEA86F9F1C9F914A0049360B /* Curry.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BEB076641C8A1FD800ABD373 /* Curry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BEA86FA01C9F91500049360B /* Tentacle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BEB076651C8A1FD800ABD373 /* Tentacle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BEB076661C8A1FD800ABD373 /* Curry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEB076641C8A1FD800ABD373 /* Curry.framework */; };
@@ -132,6 +137,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				A1678B001D3A6C0E006E052E /* ObjectMapper.framework in Copy Frameworks */,
+				A1678AFC1D3A6BC0006E052E /* Alamofire.framework in Copy Frameworks */,
 				A15C6BFC1D3856BE008F3C68 /* RomeKit.framework in Copy Frameworks */,
 				BEA86FA01C9F91500049360B /* Tentacle.framework in Copy Frameworks */,
 				BEA86F9F1C9F914A0049360B /* Curry.framework in Copy Frameworks */,
@@ -179,6 +186,9 @@
 		98400F5A1BD24DC5008C5DDE /* carthage-bash-completion */ = {isa = PBXFileReference; lastKnownFileType = text; path = "carthage-bash-completion"; sourceTree = "<group>"; };
 		98400F5B1BD24DC5008C5DDE /* carthage-zsh-completion */ = {isa = PBXFileReference; lastKnownFileType = text; path = "carthage-zsh-completion"; sourceTree = "<group>"; };
 		A15C6BF81D385648008F3C68 /* RomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RomeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1678AF21D3A37A7006E052E /* Rome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rome.swift; sourceTree = "<group>"; };
+		A1678AF81D3A6B8A006E052E /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1678AFE1D3A6BF6006E052E /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB076641C8A1FD800ABD373 /* Curry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Curry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB076651C8A1FD800ABD373 /* Tentacle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Tentacle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD7F22431C67649F00B018A9 /* TestCartfileProposedVersion */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestCartfileProposedVersion; sourceTree = "<group>"; };
@@ -255,6 +265,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1678AFF1D3A6BF6006E052E /* ObjectMapper.framework in Frameworks */,
+				A1678AFA1D3A6B8A006E052E /* Alamofire.framework in Frameworks */,
 				A15C6BFD1D3856D0008F3C68 /* RomeKit.framework in Frameworks */,
 				BEB076661C8A1FD800ABD373 /* Curry.framework in Frameworks */,
 				BEB076671C8A1FD800ABD373 /* Tentacle.framework in Frameworks */,
@@ -444,6 +456,7 @@
 				D0D1219119E88B8F005E4BAA /* GitHub.swift */,
 				D0A2025D1B114D1000C71375 /* ProducerQueue.swift */,
 				F603929819EA29F80050A6AF /* Project.swift */,
+				A1678AF21D3A37A7006E052E /* Rome.swift */,
 				D01D82D61A10160700F0DD94 /* Resolver.swift */,
 				D0DE89431A0F2D9B0030A3EC /* Scannable.swift */,
 				D0DE893F1A0F2CB00030A3EC /* Version.swift */,
@@ -457,6 +470,8 @@
 		D0D1216F19E87B05005E4BAA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A1678AFE1D3A6BF6006E052E /* ObjectMapper.framework */,
+				A1678AF81D3A6B8A006E052E /* Alamofire.framework */,
 				A15C6BF81D385648008F3C68 /* RomeKit.framework */,
 				D012AD0F1AF9843700EE91DA /* Result.framework */,
 				D0F648811A4DD3D900BCF808 /* Argo.framework */,
@@ -741,6 +756,7 @@
 				D0D1219019E88A15005E4BAA /* Cartfile.swift in Sources */,
 				F603929919EA29F80050A6AF /* Project.swift in Sources */,
 				D069CA241A4E3B2700314A85 /* Archive.swift in Sources */,
+				A1678AF31D3A37A7006E052E /* Rome.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -830,6 +846,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Checkouts/RomeKit/build/Debug",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Checkouts/ObjectMapper/build/Debug",
 				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/CarthageKit/Info.plist;
@@ -852,6 +869,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Checkouts/RomeKit/build/Debug",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Checkouts/ObjectMapper/build/Debug",
 				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/CarthageKit/Info.plist;
@@ -911,6 +929,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Checkouts/RomeKit/build/Debug",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Checkouts/ObjectMapper/build/Debug",
 				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/CarthageKit/Info.plist;
@@ -956,6 +975,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Checkouts/RomeKit/build/Debug",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Checkouts/ObjectMapper/build/Debug",
 				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/CarthageKit/Info.plist;

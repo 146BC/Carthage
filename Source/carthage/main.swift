@@ -12,6 +12,15 @@ import Foundation
 import ReactiveCocoa
 import ReactiveTask
 import Result
+import RomeKit
+
+let env = NSProcessInfo.processInfo().environment
+if let baseUrl = env["ROME_ENDPOINT"], apiKey = env["ROME_KEY"] {
+	let bootstrap = RomeKit.Bootstrap.init(baseUrl: baseUrl, apiKey: apiKey)
+	bootstrap?.start()
+} else {
+	print("Environment variables ROME_ENDPOINT & ROME_KEY not set")
+}
 
 guard ensureGitVersion().first()?.value == true else {
 	fputs("Carthage requires git \(CarthageRequiredGitVersion) or later.\n", stderr)

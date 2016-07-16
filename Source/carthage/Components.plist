@@ -13,6 +13,24 @@
 				<key>BundleOverwriteAction</key>
 				<string></string>
 				<key>RootRelativeBundlePath</key>
+				<string>Library/Frameworks/CarthageKit.framework/Versions/A/Frameworks/ObjectMapper.framework</string>
+			</dict>
+			<dict>
+				<key>BundleOverwriteAction</key>
+				<string></string>
+				<key>RootRelativeBundlePath</key>
+				<string>Library/Frameworks/CarthageKit.framework/Versions/A/Frameworks/RomeKit.framework</string>
+			</dict>
+			<dict>
+				<key>BundleOverwriteAction</key>
+				<string></string>
+				<key>RootRelativeBundlePath</key>
+				<string>Library/Frameworks/CarthageKit.framework/Versions/A/Frameworks/Alamofire.framework</string>
+			</dict>
+			<dict>
+				<key>BundleOverwriteAction</key>
+				<string></string>
+				<key>RootRelativeBundlePath</key>
 				<string>Library/Frameworks/CarthageKit.framework/Versions/A/Frameworks/ReactiveTask.framework</string>
 			</dict>
 			<dict>
